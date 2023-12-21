@@ -1,6 +1,8 @@
 package com.expt.Expt_SoftwareEngineer.pojo;
 
 import lombok.Data;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 
 import java.time.LocalDateTime;
 

@@ -1,7 +1,5 @@
 import requests
 
-# 使用POST请求，测试 localhost：8080/register 的注册功能
-
 # url = "http://localhost:8080/user/signup"
 url = "http://localhost:8080/user/login"
 # UA伪装
@@ -10,11 +8,11 @@ header = {
 }
 # 传入的参数
 data = {
-    "username": "admin",
-    "password": "admin"
+    "username": "123456",
+    "password": "123456"
 }
 
 # 发送请求
 response = requests.post(url, data=data, headers=header)
-dic_obj = response.json()
-print(dic_obj)
+response_json = response.json()
+print(response_json)

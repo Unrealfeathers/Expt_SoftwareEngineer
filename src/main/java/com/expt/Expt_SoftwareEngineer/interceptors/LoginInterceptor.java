@@ -9,7 +9,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import java.util.Map;
 
 @Component
-public class LoginInterceptors implements HandlerInterceptor {
+public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 令牌验证

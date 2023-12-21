@@ -9,13 +9,15 @@ import java.util.Objects;
 
 public class JwtUtil {
     private static final String KEY = "215256";  // 加密密钥值
+
     // 生成Token并返回
     public static String genToken(Map<String, Object> claims) {
         return JWT.create()
                 .withClaim("claims", claims)
-                .withExpiresAt(new Date(System.currentTimeMillis() + 1000*60*60*12))
+                .withExpiresAt(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 12))
                 .sign(Algorithm.HMAC256(KEY));
     }
+
     // 验证Token
     public static Map<String, Object> parseToken(String token) {
         return JWT.require(Algorithm.HMAC256(KEY))

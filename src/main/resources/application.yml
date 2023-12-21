@@ -4,3 +4,6 @@ spring:
     url: jdbc:mysql://localhost:3306/Java
     username: root
     password: 1
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

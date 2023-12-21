@@ -10,13 +10,12 @@ public class UserService {
 
     // 根据用户名查询用户
     public User findByUserName(String username) {
-        User user = userMapper.findByUserName(username);
-        return user;
+        return userMapper.findByUserName(username);
     }
 
     // 注册用户
     public void register(String username, String password) {
         // 密码加密处理
-        userMapper.addUser(username,password);
+        userMapper.addUser(username, password);
     }
 }
