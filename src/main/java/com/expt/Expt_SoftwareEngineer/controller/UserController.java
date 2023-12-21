@@ -29,4 +29,18 @@ public class UserController {
             return Result.error("用户名已被占用");
         }
     }
+
+    @PostMapping("/login")
+    public Result<String> login(@Pattern(regexp = "^\\S{5,16}$") String username,@Pattern(regexp = "^\\S{5,16}$") String password){
+        // 根据用户名查询用户
+        User loginUser = userService.findByUserName(username);
+        if (loginUser == null){
+            return Result.error("用户名错误");
+        }
+        if (password.equals(loginUser.getPassword())) {
+            // todo JWT
+            return Result.success("JWT令牌");
+        }
+        return Result.error("密码错误");
+    }
 }
