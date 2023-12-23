@@ -1,21 +1,15 @@
 package com.expt.Expt_SoftwareEngineer.service;
 
-import com.expt.Expt_SoftwareEngineer.mapper.UserMapper;
 import com.expt.Expt_SoftwareEngineer.pojo.User;
-import org.springframework.beans.factory.annotation.Autowired;
 
-public class UserService {
-    @Autowired
-    private UserMapper userMapper;
+public interface UserService {
 
     // 根据用户名查询用户
-    public User findByUserName(String username) {
-        return userMapper.findByUserName(username);
-    }
+    User findByUserName(String username);
 
     // 注册用户
-    public void register(String username, String password) {
-        // 密码加密处理
-        userMapper.addUser(username, password);
-    }
+    void register(String username, String password);
+
+    // 更新用户信息
+    void update(User user);
 }
