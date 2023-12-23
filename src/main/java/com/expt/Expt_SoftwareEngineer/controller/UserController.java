@@ -6,6 +6,7 @@ import com.expt.Expt_SoftwareEngineer.service.UserService;
 import com.expt.Expt_SoftwareEngineer.utils.JwtUtil;
 import com.expt.Expt_SoftwareEngineer.utils.ThreadLocalUtil;
 import jakarta.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.URL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -36,16 +37,16 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public Result<String> login(@Pattern(regexp = "^\\S{2,16}$") String username, @Pattern(regexp = "^\\S{2,16}$") String password) {
+    public Result<String> login(@Pattern(regexp = "^\\S{2,16}$") String userName, @Pattern(regexp = "^\\S{2,16}$") String password) {
         // 根据用户名查询用户
-        User loginUser = userService.findByUserName(username);
+        User loginUser = userService.findByUserName(userName);
         if (loginUser == null) {
             return Result.error("用户名错误");
         }
         if (password.equals(loginUser.getPassword())) {
             Map<String, Object> claims = new HashMap<>();
-            claims.put("user_id", loginUser.getUserID());
-            claims.put("user_name", loginUser.getUserName());
+            claims.put("userID", loginUser.getUserID());
+            claims.put("userName", loginUser.getUserName());
             System.out.println(claims);
             String token = JwtUtil.genToken(claims);
             return Result.success(token);
@@ -59,14 +60,49 @@ public class UserController {
 //        String username = (String) map.get("user_name");
 
         Map<String, Object> map = ThreadLocalUtil.get();
-        String username = (String) map.get("user_name");
+        String username = (String) map.get("userName");
 
         User user = userService.findByUserName(username);
         return Result.success(user);
     }
+
     @PutMapping("/update")
-    public Result update(@RequestBody User user) {
+    public Result update(@RequestBody @Validated User user) {
         userService.update(user);
+        return Result.success();
+    }
+
+    @PatchMapping("/updateAvatar")
+    public Result updateAvatar(@RequestParam @URL String avatarUrl) {
+        userService.updateAvatar(avatarUrl);
+        return Result.success();
+    }
+
+    @PatchMapping("/updatePwd")
+    public Result updatePwd(@RequestBody Map<String, String> params) {
+        // 校验参数
+        String oldPwd = params.get("oldPwd");
+        String newPwd = params.get("newPwd");
+        String rePwd = params.get("rePwd");
+
+        if (oldPwd.isEmpty() || newPwd.isEmpty() || rePwd.isEmpty()) {
+            return Result.error("缺少参数");
+        }
+
+        Map<String, Object> map = ThreadLocalUtil.get();
+        String userName = (String) map.get("userName");
+        User loginUser = userService.findByUserName(userName);
+        String password = loginUser.getPassword();
+
+        if (!password.equals(oldPwd)) {
+            return Result.error("旧密码错误");
+        }
+
+        if (!rePwd.equals(newPwd)) {
+            return Result.error("新密码重复错误");
+        }
+
+        userService.updatePwd(newPwd);
         return Result.success();
     }
 }

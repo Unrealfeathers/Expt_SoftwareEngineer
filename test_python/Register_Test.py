@@ -8,7 +8,7 @@ header = {
 }
 # 传入的参数
 data = {
-    "username": "123456",
+    "userName": "123456",
     "password": "123456"
 }
 
