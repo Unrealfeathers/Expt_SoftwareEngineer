@@ -17,7 +17,7 @@ public interface UserMapper {
             "VALUES(#{username},#{password},now(),now())")
     void addUser(String username, String password);
 
-    @Update("UPDATE user SET user_name = #{userName},email = #{email},update_time = #{updateTime} WHERE user_id = #{userID}")
+    @Update("UPDATE user SET user_name = #{userName},email = #{email},update_time = now() WHERE user_id = #{userId}")
     void update(User user);
 
     @Update("UPDATE user SET user_img = #{avatarUrl},update_time = now() WHERE user_id = #{id}")

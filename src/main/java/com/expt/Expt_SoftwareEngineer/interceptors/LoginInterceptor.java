@@ -4,6 +4,7 @@ import com.expt.Expt_SoftwareEngineer.utils.JwtUtil;
 import com.expt.Expt_SoftwareEngineer.utils.ThreadLocalUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -12,7 +13,7 @@ import java.util.Map;
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, @NonNull HttpServletResponse response,@NonNull Object handler) {
         // 令牌验证
         String token = request.getHeader("Authorization");
         try {
@@ -29,8 +30,8 @@ public class LoginInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        // 清楚 ThreadLocal 中的业务数据
+    public void afterCompletion(@NonNull HttpServletRequest request,@NonNull HttpServletResponse response,@NonNull Object handler, Exception ex) {
+        // 清除 ThreadLocal 中的业务数据
         ThreadLocalUtil.remove();
     }
 }

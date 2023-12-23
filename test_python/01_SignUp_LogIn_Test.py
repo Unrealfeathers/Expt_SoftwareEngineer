@@ -1,3 +1,13 @@
+"""
+接口功能描述: 用户登录和注册接口
+接口请求方法: post
+接口请求地址: http://localhost:8080/user/login http://localhost:8080/user/signup
+接口请求参数: header data
+接口请求参数格式: json
+接口返回数据类型: json
+接口返回参数说明: code/message/data
+备注: 无
+"""
 import requests
 
 # url = "http://localhost:8080/user/signup"
@@ -8,8 +18,8 @@ header = {
 }
 # 传入的参数
 data = {
-    "userName": "123456",
-    "password": "123456"
+    "username": "232323",
+    "password": "12345678"
 }
 
 # 发送请求

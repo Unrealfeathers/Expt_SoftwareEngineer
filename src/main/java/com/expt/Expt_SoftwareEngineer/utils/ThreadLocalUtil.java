@@ -1,8 +1,9 @@
 package com.expt.Expt_SoftwareEngineer.utils;
 
 public class ThreadLocalUtil {
-    private static final ThreadLocal THREAD_LOCAL = new ThreadLocal();
+    private static final ThreadLocal<Object> THREAD_LOCAL = new ThreadLocal<>();
 
+    @SuppressWarnings("unchecked")
     public static <T> T get() {
         return (T) THREAD_LOCAL.get();
     }

@@ -16,11 +16,11 @@ public class Result<T> {
         return new Result<>(0, "操作成功", data);
     }
 
-    public static Result success() {
+    public static <T> Result<T> success() {
         return new Result<>(0, "操作成功", null);
     }
 
-    public static Result error(String message) {
+    public static <T> Result<T> error(String message) {
         return new Result<>(1, message, null);
     }
 }
