@@ -46,6 +46,7 @@ public class UserController {
             Map<String, Object> claims = new HashMap<>();
             claims.put("userId", loginUser.getUserId());
             claims.put("userName", loginUser.getUserName());
+            claims.put("typeId", loginUser.getTypeId());
             String token = JwtUtil.genToken(claims);
             return Result.success(token);
         }
@@ -64,15 +65,8 @@ public class UserController {
 
     @PutMapping("/update")
     public Result<String> update(@RequestBody User user) {
-        // 查询用户名是否被占用
-        if (userService.findByUserName(user.getUserName()) == null) {
-            // 未被占用，用户登录
-            userService.update(user);
-            return Result.success();
-        } else {
-            // 被占用，返回错误
-            return Result.error("用户名已被占用");
-        }
+        userService.update(user);
+        return Result.success();
     }
 
     @PatchMapping("/updateAvatar")

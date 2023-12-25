@@ -14,7 +14,7 @@ import requests
 url = "http://localhost:8080/user/info"
 header = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36    (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3775.400 QQBrowser/10.6.4208.400',
-    "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsidXNlck5hbWUiOiIyMzIzIiwidXNlcklkIjo1fSwiZXhwIjoxNzAzMzc3NTg1fQ.O79YND9-nh48RRHEzjtJ6ssdouKlMfV6LTHPhRLYCJ0"
+    "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsiVHlwZUlkIjoiMSIsInVzZXJOYW1lIjoiYWRtaW4iLCJ1c2VySWQiOjF9LCJleHAiOjE3MDM1MTk2NTd9.lTmJOp2c6LPqAO0KrsTMmjHrfmWvx_YdwG4kLPc1Elg"
 }
 response = requests.get(url, headers=header)
 response_json = response.json()

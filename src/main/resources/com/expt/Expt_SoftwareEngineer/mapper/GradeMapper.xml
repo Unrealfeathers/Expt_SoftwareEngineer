@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.expt.Expt_SoftwareEngineer.mapper.GradeMapper">
+    <!--动态SQL语句-->
+    <select id="getCourseGradeList" resultType="com.expt.Expt_SoftwareEngineer.pojo.Grade">
+        SELECT
+        lesson.lesson_id AS course_id,
+        lesson.lesson_name AS course_name,
+        teacher.teacher_name AS course_teacher,
+        lesson.lesson_score AS course_credit,
+        grade_lesson.gl_score AS course_score
+        FROM
+        lesson
+        JOIN
+        teacher ON lesson.teacher_id = teacher.teacher_id
+        JOIN
+        grade_lesson ON lesson.lesson_id = grade_lesson.lesson_id
+        JOIN
+        student ON grade_lesson.student_id = student.student_id
+        JOIN
+        term ON lesson.term_id = term.term_id
+        <where>
+            student.student_id = #{typeId}
+            <if test="academicYear!=null">
+                AND term.term_name = #{academicYear}
+            </if>
+            <if test="courseId!=null">
+                AND lesson.lesson_id = #{courseId}
+            </if>
+            <if test="courseName!=null">
+                AND lesson.lesson_name = #{courseName}
+            </if>
+
+        </where>
+    </select>
+</mapper>

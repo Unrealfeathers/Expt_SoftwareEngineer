@@ -15,12 +15,12 @@ import json
 url = "http://localhost:8080/user/update"
 header = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36    (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3775.400 QQBrowser/10.6.4208.400',
-    "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsidXNlck5hbWUiOiIyMzIzIiwidXNlcklkIjo1fSwiZXhwIjoxNzAzMzc3NTg1fQ.O79YND9-nh48RRHEzjtJ6ssdouKlMfV6LTHPhRLYCJ0",
+    "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsidXNlck5hbWUiOiJhZG1pbiIsInVzZXJJZCI6MX0sImV4cCI6MTcwMzUxMTkyOH0.j4Maqe-TQXRaD3XEn1vBuqZFirjWpSvp1Sc7YtZuKUU",
     "Content-Type": "application/json"
 }
 params = {
-    "userName": "232323",
-    "email": "215256@stu.com"
+    "userName": "admin",
+    "email": "215256@stu.cn"
 }
 payload = json.dumps(params)
 response = requests.put(url, data=payload, headers=header)
