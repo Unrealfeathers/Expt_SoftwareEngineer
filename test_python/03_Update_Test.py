@@ -15,11 +15,11 @@ import json
 url = "http://localhost:8080/user/update"
 header = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36    (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3775.400 QQBrowser/10.6.4208.400',
-    "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsidXNlck5hbWUiOiJhZG1pbiIsInVzZXJJZCI6MX0sImV4cCI6MTcwMzUxMTkyOH0.j4Maqe-TQXRaD3XEn1vBuqZFirjWpSvp1Sc7YtZuKUU",
+    "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFpbXMiOnsidHlwZUlkIjpudWxsLCJ1c2VyTmFtZSI6IjEyMzQ1NiIsInVzZXJJZCI6Nn0sImV4cCI6MTcwMzU5NjYxMn0.MN1uJ53qMxZFLq_WO0v9WwCLyxqfMLT3FCzT-grmEsM",
     "Content-Type": "application/json"
 }
 params = {
-    "userName": "admin",
+    "username": "123456",
     "email": "215256@stu.cn"
 }
 payload = json.dumps(params)

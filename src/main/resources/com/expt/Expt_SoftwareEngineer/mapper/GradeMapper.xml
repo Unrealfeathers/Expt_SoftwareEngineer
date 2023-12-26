@@ -32,7 +32,57 @@
             <if test="courseName!=null">
                 AND lesson.lesson_name = #{courseName}
             </if>
+        </where>
+    </select>
 
+    <select id="getSportGradeList" resultType="com.expt.Expt_SoftwareEngineer.pojo.Grade">
+        SELECT
+        sport.sport_id AS course_id,
+        sport.sport_name AS course_name,
+        teacher.teacher_name AS course_teacher,
+        sport.sport_score AS course_credit,
+        grade_sport.gs_score AS course_score
+        FROM
+        sport
+        JOIN teacher ON sport.teacher_id = teacher.teacher_id
+        JOIN grade_sport ON sport.sport_id = grade_sport.sport_id
+        JOIN student ON grade_sport.student_id = student.student_id
+        JOIN term ON sport.term_id = term.term_id
+        <where>
+            student.student_id = #{typeId}
+            <if test="academicYear!=null">
+                AND term.term_name = #{academicYear}
+            </if>
+            <if test="courseId!=null">
+                AND sport.sport_id = #{courseId}
+            </if>
+            <if test="courseName!=null">
+                AND sport.sport_name = #{courseName}
+            </if>
+        </where>
+    </select>
+
+    <select id="getActivityGradeList" resultType="com.expt.Expt_SoftwareEngineer.pojo.Grade">
+        SELECT
+        activity.activity_id AS course_id,
+        activity.activity_name AS course_name,
+        activity.activity_score AS course_score
+        FROM
+        activity
+        JOIN grade_activity ON activity.activity_id = grade_activity.activity_id
+        JOIN student ON grade_activity.student_id = student.student_id
+        JOIN term ON activity.term_id = term.term_id
+        <where>
+            student.student_id = #{typeId}
+            <if test="academicYear!=null">
+                AND term.term_name = #{academicYear}
+            </if>
+            <if test="courseId!=null">
+                AND activity.activity_id = #{courseId}
+            </if>
+            <if test="courseName!=null">
+                AND activity.activity_name = #{courseName}
+            </if>
         </where>
     </select>
 </mapper>

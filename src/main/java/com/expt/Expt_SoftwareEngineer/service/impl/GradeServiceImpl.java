@@ -22,6 +22,11 @@ public class GradeServiceImpl implements GradeService {
     }
 
     @Override
+    public List<String> getAcademicYear() {
+        return gradeMapper.getAcademicYear();
+    }
+
+    @Override
     public PageBean<Grade> getCourseGradeList(Integer pageNum, Integer pageSize, String academicYear, Integer courseId, String courseName) {
         PageBean<Grade> pageBean = new PageBean<>();
         // 开启分页查询
@@ -30,6 +35,40 @@ public class GradeServiceImpl implements GradeService {
         Map<String, Object> map = ThreadLocalUtil.get();
         Integer typeId = (Integer) map.get("typeId");
         List<Grade> gradeList = gradeMapper.getCourseGradeList(academicYear, courseId, courseName, typeId);
+
+        Page<Grade> page = (Page<Grade>) gradeList;
+        pageBean.setTotal(page.getTotal());
+        pageBean.setItems(page.getResult());
+
+        return pageBean;
+    }
+
+    @Override
+    public PageBean<Grade> getSportGradeList(Integer pageNum, Integer pageSize, String academicYear, Integer courseId, String courseName) {
+        PageBean<Grade> pageBean = new PageBean<>();
+        // 开启分页查询
+        PageHelper.startPage(pageNum, pageSize);
+        // 获取学生ID
+        Map<String, Object> map = ThreadLocalUtil.get();
+        Integer typeId = (Integer) map.get("typeId");
+        List<Grade> gradeList = gradeMapper.getSportGradeList(academicYear, courseId, courseName, typeId);
+
+        Page<Grade> page = (Page<Grade>) gradeList;
+        pageBean.setTotal(page.getTotal());
+        pageBean.setItems(page.getResult());
+
+        return pageBean;
+    }
+
+    @Override
+    public PageBean<Grade> getActivityGradeList(Integer pageNum, Integer pageSize, String academicYear, Integer courseId, String courseName) {
+        PageBean<Grade> pageBean = new PageBean<>();
+        // 开启分页查询
+        PageHelper.startPage(pageNum, pageSize);
+        // 获取学生ID
+        Map<String, Object> map = ThreadLocalUtil.get();
+        Integer typeId = (Integer) map.get("typeId");
+        List<Grade> gradeList = gradeMapper.getActivityGradeList(academicYear, courseId, courseName, typeId);
 
         Page<Grade> page = (Page<Grade>) gradeList;
         pageBean.setTotal(page.getTotal());
